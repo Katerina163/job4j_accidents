@@ -14,12 +14,12 @@ public class AccidentMem implements AccidentRepository {
     public AccidentMem() {
         list = new ArrayList<>();
         var random = new Random();
-        for (int i = 1; i < 11; i++) {
+        for (int i = 0; i < 11; i++) {
             var accident = new Accident();
             accident.setId(i);
             accident.setName("Имя под номером " + i);
             accident.setAddress("Ул. Летняя, дом №" + i);
-            accident.setText("Случилось непонятное в количестве " + random.nextInt(i * 10));
+            accident.setText("Случилось непонятное в количестве " + random.nextInt(i * 10 + 1));
             list.add(accident);
         }
     }
@@ -32,5 +32,20 @@ public class AccidentMem implements AccidentRepository {
     @Override
     public List<Accident> getList() {
         return list;
+    }
+
+    @Override
+    public void create(Accident accident) {
+        list.add(accident);
+    }
+
+    @Override
+    public void delete(int id) {
+        list.remove(id);
+    }
+
+    @Override
+    public void modify(Accident accident) {
+        list.set(accident.getId(), accident);
     }
 }

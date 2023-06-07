@@ -8,4 +8,10 @@ public interface AccidentService {
     Accident getAccient(int id);
 
     List<Accident> getList();
+
+    void create(Accident accident);
+
+    void delete(int id);
+
+    void modify(Accident accident);
 }

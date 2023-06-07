@@ -23,4 +23,19 @@ public class MemAccidentService implements AccidentService {
     public List<Accident> getList() {
         return repository.getList();
     }
+
+    @Override
+    public void create(Accident accident) {
+        repository.create(accident);
+    }
+
+    @Override
+    public void delete(int id) {
+        repository.delete(id);
+    }
+
+    @Override
+    public void modify(Accident accident) {
+        repository.modify(accident);
+    }
 }

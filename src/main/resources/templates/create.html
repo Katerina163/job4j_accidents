@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Добавление Инцидента</title>
+    <link rel="stylesheet" th:href="@{/static/styles/background.css}">
+    <link rel="icon" href="/static/img/duck.png">
+</head>
+<body>
+<div class="m-4">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand">
+                <img src="/static/img/duck.png" alt="Logo" width="36" height="37" class="d-inline-block align-text-top">
+            </a>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" th:href="@{/index}">Инциденты</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" th:href="@{/save}">Добавить инцидент</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="row justify-content-center">
+    <div class="card bg-warning text-center" style="width: 80%">
+        <div class="card-header text-danger"><b>Новый инцидент</b></div>
+        <div class="card-body text-danger">
+            <form th:action="@{/save}" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="0"/>
+                <div class="form-group">
+                    <label for="name">Имя</label>
+                    <input type="text" class="form-control" name="name" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="text">Описание</label>
+                    <textarea class="form-control" id="text" name="text" rows="10" placeholder="Опишите инцедент"
+                              required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="address">Адрес</label>
+                    <input type="text" class="form-control" name="address" id="address" required>
+                </div>
+                <button type="submit" class="btn btn-danger mt-3">Сохранить</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
