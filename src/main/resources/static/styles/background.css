@@ -1,0 +1,13 @@
+.navbar {
+    background-color: #e34b1f;
+}
+body {
+    background:
+            conic-gradient(from -116.36deg at 25% 75%,#f0ba8a 52.72deg,#0000 0), conic-gradient(from -116.36deg at 25% 75%,#f0ba8a 52.72deg,#0000 0) calc(3*52px) calc(52px/2),
+            conic-gradient(from   63.43deg at 75% 75%,#f0ba8a 52.72deg,#0000 0), conic-gradient(from   63.43deg at 75% 75%,#f0ba8a 52.72deg,#0000 0) calc(3*52px) calc(52px/2),
+            conic-gradient(
+                    #f0d48a   63.43deg ,#f0a18a 0 116.36deg,
+                    #f0d48a 0 180deg   ,#f0a18a 0 243.43deg,
+                    #f0d48a 0 296.15deg,#f0a18a 0);
+    background-size: 104px 52px;
+}

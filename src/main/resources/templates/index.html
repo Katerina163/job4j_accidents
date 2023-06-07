@@ -1,11 +1,24 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Index</title>
+    <title>Автомобильные инциденты</title>
+    <link rel="stylesheet" th:href="@{/static/styles/background.css}">
 </head>
 <body>
+<div class="m-4">
+    <nav class="navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand">
+                <img src="/static/img/duck.png" alt="Logo" width="36" height="37" class="d-inline-block align-text-top">
+            </a>
+        </div>
+    </nav>
+</div>
+<div class="container-fluid">
+    <div th:text="${user}"></div>
+</div>
 </body>
 </html>
