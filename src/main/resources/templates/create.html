@@ -52,6 +52,14 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <label for="rIds">Статья</label>
+                    <select class="form-control" id="rIds" name="rIds" multiple required>
+                        <option th:each="rule: ${rules}"
+                                th:text="${rule.name}"
+                                th:value="${rule.id}"></option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="text">Описание</label>
                     <textarea class="form-control" id="text" name="text" rows="10" placeholder="Опишите инцедент"
                               required></textarea>

@@ -3,16 +3,16 @@ package ru.job4j.accidents.repository;
 import org.springframework.stereotype.Repository;
 import ru.job4j.accidents.model.Accident;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @Repository
 public class AccidentMem implements AccidentRepository {
     private List<Accident> list;
 
     public AccidentMem() {
-        list = new ArrayList<>();
+        list = new CopyOnWriteArrayList<>();
         var random = new Random();
         for (int i = 0; i < 11; i++) {
             var accident = new Accident();
