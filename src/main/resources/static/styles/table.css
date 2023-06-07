@@ -1,0 +1,44 @@
+table.mytable {
+    margin: auto;
+    font-family: "Times New Roman", Times, serif;
+    border: 3px solid #F0A18A;
+    background-color: #F0BA8A;
+    width: 85%;
+    text-align: left;
+    border-collapse: collapse;
+}
+table.mytable td, table.mytable th {
+    border: 6px solid #F0A18A;
+    padding: 4px 2px;
+}
+table.mytable tbody td {
+    font-size: 17px;
+    font-weight: bold;
+    color: #E34B1F;
+}
+table.mytable td:nth-child(even) {
+    background: #F0D48A;
+}
+table.mytable thead {
+    background: #F0BA8A;
+    border-bottom: 10px solid #F0D48A;
+}
+table.mytable thead th {
+    font-size: 20px;
+    font-weight: bold;
+    color: #E34B1F;
+    text-align: center;
+}
+table.mytable tfoot td {
+    font-size: 13px;
+}
+table.mytable tfoot .links {
+    text-align: right;
+}
+table.mytable tfoot .links a{
+    display: inline-block;
+    background: #F0D48A;
+    color: #F0D48A;
+    padding: 2px 8px;
+    border-radius: 5px;
+}
