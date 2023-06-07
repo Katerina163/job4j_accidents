@@ -26,7 +26,12 @@ public class AccidentMem implements AccidentRepository {
 
     @Override
     public Accident getAccient(int id) {
-        return list.get(id);
+        for (var a : list) {
+            if (a.getId() == id) {
+                return a;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -41,11 +46,21 @@ public class AccidentMem implements AccidentRepository {
 
     @Override
     public void delete(int id) {
-        list.remove(id);
+        for (var accident : list) {
+            if (accident.getId() == id) {
+                list.remove(id);
+                break;
+            }
+        }
     }
 
     @Override
     public void modify(Accident accident) {
-        list.set(accident.getId(), accident);
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getId() == accident.getId()) {
+                list.set(i, accident);
+                break;
+            }
+        }
     }
 }

@@ -62,7 +62,7 @@ public class IndexController {
     public String save(@ModelAttribute Accident accident, HttpServletRequest req) {
         setRules(accident, req.getParameterValues("rIds"));
         int id = accident.getType().getId();
-        accident.setType(typeList.get(id - 1));
+        accident.setType(typeList.get(id));
         service.create(accident);
         return "redirect:/index";
     }
