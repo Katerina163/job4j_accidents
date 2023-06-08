@@ -3,13 +3,10 @@ package ru.job4j.accidents.repository;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 import ru.job4j.accidents.model.Accident;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Repository
@@ -57,12 +54,7 @@ public class JdbcTemplateAccidentRepository implements AccidentRepository {
 
     @Override
     public boolean modify(Accident accident) {
-        String sql = "update accidents set name = :name and text = :text and address = :address where id = :id";
-        SqlParameterSource namedParameters = new MapSqlParameterSource(
-                Map.of("name", accident.getName(),
-                        "text", accident.getText(),
-                        "address", accident.getAddress(),
-                        "id", accident.getId()));
-        return jdbc.update(sql, namedParameters) == 1;
+        return jdbc.update("update accidents set name = ?, text = ?, address = ? where id = ?",
+                accident.getName(), accident.getText(), accident.getAddress(), accident.getId()) == 1;
     }
 }
