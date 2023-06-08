@@ -49,15 +49,8 @@ public class IndexController {
 
     @PostMapping("/save")
     public String save(@ModelAttribute Accident accident, HttpServletRequest req) {
-        setRules(accident, req.getParameterValues("rIds"));
-        service.create(accident);
+        service.create(accident, req.getParameterValues("rIds"));
         return "redirect:/index";
-    }
-
-    private void setRules(Accident accident, String[] ids) {
-        for (var s : ids) {
-            accident.getRules().add(ruleService.getRule(Integer.parseInt(s)).get());
-        }
     }
 
     @GetMapping("/modify/{id}")
@@ -75,8 +68,7 @@ public class IndexController {
 
     @PostMapping("/modify")
     public String modify(@ModelAttribute Accident accident, HttpServletRequest req, Model model) {
-        setRules(accident, req.getParameterValues("rIds"));
-        var isModify = service.modify(accident);
+        var isModify = service.modify(accident, req.getParameterValues("rIds"));
         if (!isModify) {
             model.addAttribute("message", "Не удалось изменить");
             return "error";

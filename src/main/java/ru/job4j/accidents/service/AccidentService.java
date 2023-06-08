@@ -10,9 +10,9 @@ public interface AccidentService {
 
     List<Accident> getAll();
 
-    Accident create(Accident accident);
+    Accident create(Accident accident, String[] ids);
 
     boolean delete(int id);
 
-    boolean modify(Accident accident);
+    boolean modify(Accident accident, String[] ids);
 }

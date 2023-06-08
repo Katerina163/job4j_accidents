@@ -40,14 +40,17 @@ public class MemAccidentService implements AccidentService {
     }
 
     @Override
-    public Accident create(Accident accident) {
-        setTypeId(accident);
+    public Accident create(Accident accident, String[] ids) {
+        setTypeAndRules(accident, ids);
         return repository.create(accident);
     }
 
-    private void setTypeId(Accident accident) {
+    private void setTypeAndRules(Accident accident, String[] ids) {
         int id = accident.getType().getId();
         accident.setType(accidentTypeService.getAccidentType(id).get());
+        for (var s : ids) {
+            accident.getRules().add(ruleService.getRule(Integer.parseInt(s)).get());
+        }
     }
 
     @Override
@@ -56,8 +59,8 @@ public class MemAccidentService implements AccidentService {
     }
 
     @Override
-    public boolean modify(Accident accident) {
-        setTypeId(accident);
+    public boolean modify(Accident accident, String[] ids) {
+        setTypeAndRules(accident, ids);
         return repository.modify(accident);
     }
 }
