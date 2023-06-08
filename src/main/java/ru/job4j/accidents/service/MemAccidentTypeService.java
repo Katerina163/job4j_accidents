@@ -11,8 +11,8 @@ import java.util.Optional;
 public class MemAccidentTypeService implements AccidentTypeService {
     private AccidentTypeRepository repository;
 
-    public MemAccidentTypeService(AccidentTypeRepository accidentTypeMem) {
-        repository = accidentTypeMem;
+    public MemAccidentTypeService(AccidentTypeRepository memAccidentTypeRepository) {
+        repository = memAccidentTypeRepository;
     }
 
     @Override

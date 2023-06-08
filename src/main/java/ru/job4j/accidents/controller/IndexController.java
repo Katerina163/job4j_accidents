@@ -79,7 +79,7 @@ public class IndexController {
     public String modify(@ModelAttribute Accident accident, HttpServletRequest req, Model model) {
         setRules(accident, req.getParameterValues("rIds"));
         int id = accident.getType().getId();
-        accident.setType(typeService.getAccidentType(id).get());
+        accident.setType(typeService.getAccidentType(id - 1).get());
         var isModify = service.modify(accident);
         if (!isModify) {
             model.addAttribute("message", "Не удалось изменить");

@@ -9,11 +9,11 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
-public class RuleRepositoryMem implements RuleRepository {
+public class MemRuleRepository implements RuleRepository {
     private Map<Integer, Rule> map;
     private AtomicInteger integer = new AtomicInteger(0);
 
-    public RuleRepositoryMem() {
+    public MemRuleRepository() {
         map = new ConcurrentHashMap<>();
         map.put(integer.getAndIncrement(), new Rule(integer.get(), "Статья. 1"));
         map.put(integer.getAndIncrement(), new Rule(integer.get(), "Статья. 2"));

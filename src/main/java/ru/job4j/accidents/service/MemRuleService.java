@@ -11,8 +11,8 @@ import java.util.Optional;
 public class MemRuleService implements RuleService {
     private RuleRepository repository;
 
-    public MemRuleService(RuleRepository ruleRepositoryMem) {
-        repository = ruleRepositoryMem;
+    public MemRuleService(RuleRepository memRuleRepository) {
+        repository = memRuleRepository;
     }
 
     @Override

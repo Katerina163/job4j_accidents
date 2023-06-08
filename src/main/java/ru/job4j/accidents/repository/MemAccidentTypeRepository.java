@@ -9,11 +9,11 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
-public class AccidentTypeMem implements AccidentTypeRepository {
+public class MemAccidentTypeRepository implements AccidentTypeRepository {
     private Map<Integer, AccidentType> map;
     private AtomicInteger integer = new AtomicInteger(0);
 
-    public AccidentTypeMem() {
+    public MemAccidentTypeRepository() {
         map = new ConcurrentHashMap<>();
         map.put(integer.getAndIncrement(), new AccidentType(integer.get(), "Две машины"));
         map.put(integer.getAndIncrement(), new AccidentType(integer.get(), "Машина и человек"));
