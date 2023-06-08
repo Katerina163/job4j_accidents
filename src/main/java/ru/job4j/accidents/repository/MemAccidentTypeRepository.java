@@ -10,14 +10,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class MemAccidentTypeRepository implements AccidentTypeRepository {
-    private Map<Integer, AccidentType> map;
+    private Map<Integer, AccidentType> map = new ConcurrentHashMap<>();
     private AtomicInteger integer = new AtomicInteger(0);
 
     public MemAccidentTypeRepository() {
-        map = new ConcurrentHashMap<>();
-        map.put(integer.getAndIncrement(), new AccidentType(integer.get(), "Две машины"));
-        map.put(integer.getAndIncrement(), new AccidentType(integer.get(), "Машина и человек"));
-        map.put(integer.getAndIncrement(), new AccidentType(integer.get(), "Машина и велосипед"));
+        map.put(integer.get(), new AccidentType(integer.get(), "Две машины"));
+        map.put(integer.incrementAndGet(), new AccidentType(integer.get(), "Машина и человек"));
+        map.put(integer.incrementAndGet(), new AccidentType(integer.get(), "Машина и велосипед"));
     }
 
     @Override

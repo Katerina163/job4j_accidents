@@ -10,14 +10,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class MemRuleRepository implements RuleRepository {
-    private Map<Integer, Rule> map;
+    private Map<Integer, Rule> map = new ConcurrentHashMap<>();
     private AtomicInteger integer = new AtomicInteger(0);
 
     public MemRuleRepository() {
-        map = new ConcurrentHashMap<>();
-        map.put(integer.getAndIncrement(), new Rule(integer.get(), "Статья. 1"));
-        map.put(integer.getAndIncrement(), new Rule(integer.get(), "Статья. 2"));
-        map.put(integer.getAndIncrement(), new Rule(integer.get(), "Статья. 3"));
+        map.put(integer.get(), new Rule(integer.get(), "Статья. 1"));
+        map.put(integer.incrementAndGet(), new Rule(integer.get(), "Статья. 2"));
+        map.put(integer.incrementAndGet(), new Rule(integer.get(), "Статья. 3"));
     }
 
     @Override

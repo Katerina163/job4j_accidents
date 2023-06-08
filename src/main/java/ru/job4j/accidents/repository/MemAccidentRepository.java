@@ -10,11 +10,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class MemAccidentRepository implements AccidentRepository {
-    private Map<Integer, Accident> map;
+    private Map<Integer, Accident> map = new ConcurrentHashMap<>();
     private AtomicInteger integer = new AtomicInteger(0);
 
     public MemAccidentRepository() {
-        map = new ConcurrentHashMap<>();
         for (int i = 0; i < 11; i++) {
             var accident = new Accident();
             accident.setId(integer.get());

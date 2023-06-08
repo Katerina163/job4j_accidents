@@ -58,7 +58,7 @@ public class IndexController {
 
     private void setRules(Accident accident, String[] ids) {
         for (var s : ids) {
-            accident.getRules().add(ruleService.getRule(Integer.parseInt(s) - 1).get());
+            accident.getRules().add(ruleService.getRule(Integer.parseInt(s)).get());
         }
     }
 
@@ -79,7 +79,7 @@ public class IndexController {
     public String modify(@ModelAttribute Accident accident, HttpServletRequest req, Model model) {
         setRules(accident, req.getParameterValues("rIds"));
         int id = accident.getType().getId();
-        accident.setType(typeService.getAccidentType(id - 1).get());
+        accident.setType(typeService.getAccidentType(id).get());
         var isModify = service.modify(accident);
         if (!isModify) {
             model.addAttribute("message", "Не удалось изменить");
