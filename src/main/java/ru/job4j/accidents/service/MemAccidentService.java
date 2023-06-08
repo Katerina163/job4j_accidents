@@ -41,7 +41,13 @@ public class MemAccidentService implements AccidentService {
 
     @Override
     public Accident create(Accident accident) {
+        setTypeId(accident);
         return repository.create(accident);
+    }
+
+    private void setTypeId(Accident accident) {
+        int id = accident.getType().getId();
+        accident.setType(accidentTypeService.getAccidentType(id).get());
     }
 
     @Override
@@ -51,6 +57,7 @@ public class MemAccidentService implements AccidentService {
 
     @Override
     public boolean modify(Accident accident) {
+        setTypeId(accident);
         return repository.modify(accident);
     }
 }
