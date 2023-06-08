@@ -13,9 +13,9 @@ public class MemAccidentService implements AccidentService {
     private AccidentTypeService accidentTypeService;
     private RuleService ruleService;
 
-    public MemAccidentService(AccidentRepository memAccidentRepository, AccidentTypeService memAccidentTypeService,
+    public MemAccidentService(AccidentRepository jdbcTemplateAccidentRepository, AccidentTypeService memAccidentTypeService,
                               RuleService memRuleService) {
-        repository = memAccidentRepository;
+        repository = jdbcTemplateAccidentRepository;
         accidentTypeService = memAccidentTypeService;
         ruleService = memRuleService;
     }
