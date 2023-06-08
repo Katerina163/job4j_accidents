@@ -5,11 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.accidents.model.Accident;
-import ru.job4j.accidents.model.Rule;
 import ru.job4j.accidents.service.AccidentService;
 import ru.job4j.accidents.service.AccidentTypeService;
-
-import java.util.List;
+import ru.job4j.accidents.service.RuleService;
 
 @Controller
 public class IndexController {
@@ -17,21 +15,13 @@ public class IndexController {
 
     private AccidentTypeService typeService;
 
-    private List<Rule> rules;
+    private RuleService ruleService;
 
-    public IndexController(AccidentService memAccidentService, AccidentTypeService memAccidentTypeService) {
+    public IndexController(AccidentService memAccidentService, AccidentTypeService memAccidentTypeService,
+                           RuleService memRuleService) {
         service = memAccidentService;
         typeService = memAccidentTypeService;
-        rules = List.of(
-                new Rule(1, "Статья. 1"),
-                new Rule(2, "Статья. 2"),
-                new Rule(3, "Статья. 3")
-        );
-        var map = service.getMap();
-        for (int i = 0; i < 11; i++) {
-            var accident = map.get(i);
-            accident.getRules().add(rules.get(1));
-        }
+        ruleService = memRuleService;
     }
 
     @GetMapping({"/", "/index"})
@@ -43,7 +33,7 @@ public class IndexController {
     @GetMapping("/save")
     public String getCreatePage(Model model) {
         model.addAttribute("types", typeService.getMap().values())
-                .addAttribute("rules", rules);
+                .addAttribute("rules", ruleService.getMap().values());
         return "create";
     }
 
@@ -68,7 +58,7 @@ public class IndexController {
 
     private void setRules(Accident accident, String[] ids) {
         for (var s : ids) {
-            accident.getRules().add(rules.get(Integer.parseInt(s) - 1));
+            accident.getRules().add(ruleService.getRule(Integer.parseInt(s) - 1).get());
         }
     }
 
@@ -81,7 +71,7 @@ public class IndexController {
         }
         model.addAttribute("accident", optional.get())
                 .addAttribute("types", typeService.getMap().values())
-                .addAttribute("rules", rules);
+                .addAttribute("rules", ruleService.getMap().values());
         return "modify";
     }
 
