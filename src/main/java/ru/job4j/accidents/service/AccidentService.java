@@ -2,12 +2,13 @@ package ru.job4j.accidents.service;
 
 import ru.job4j.accidents.model.Accident;
 
-import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 public interface AccidentService {
-    Accident getAccient(int id);
+    Optional<Accident> getAccient(int id);
 
-    List<Accident> getList();
+    Map<Integer, Accident> getMap();
 
     void create(Accident accident);
 

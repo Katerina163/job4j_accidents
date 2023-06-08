@@ -33,7 +33,9 @@ public class IndexController {
                 new Rule(2, "Статья. 2"),
                 new Rule(3, "Статья. 3")
         );
-        for (var accident : service.getList()) {
+        var map = service.getMap();
+        for (int i = 0; i < 11; i++) {
+            var accident = map.get(i);
             accident.setType(typeList.get(1));
             accident.getRules().add(rules.get(1));
         }
@@ -41,7 +43,7 @@ public class IndexController {
 
     @GetMapping({"/", "/index"})
     public String getIndexPage(Model model) {
-        model.addAttribute("accidents", service.getList());
+        model.addAttribute("accidents", service.getMap().values());
         return "index";
     }
 
@@ -75,7 +77,7 @@ public class IndexController {
 
     @GetMapping("/modify/{id}")
     public String getModifyPage(@PathVariable int id, Model model) {
-        model.addAttribute("accident", service.getAccient(id))
+        model.addAttribute("accident", service.getAccient(id).get())
                 .addAttribute("types", typeList)
                 .addAttribute("rules", rules);
         return "modify";

@@ -4,7 +4,8 @@ import org.springframework.stereotype.Service;
 import ru.job4j.accidents.model.Accident;
 import ru.job4j.accidents.repository.AccidentRepository;
 
-import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class MemAccidentService implements AccidentService {
@@ -15,13 +16,13 @@ public class MemAccidentService implements AccidentService {
     }
 
     @Override
-    public Accident getAccient(int id) {
+    public Optional<Accident> getAccient(int id) {
         return repository.getAccient(id);
     }
 
     @Override
-    public List<Accident> getList() {
-        return repository.getList();
+    public Map<Integer, Accident> getMap() {
+        return repository.getMap();
     }
 
     @Override
