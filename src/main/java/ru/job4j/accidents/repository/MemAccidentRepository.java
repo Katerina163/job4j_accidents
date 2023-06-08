@@ -3,6 +3,8 @@ package ru.job4j.accidents.repository;
 import org.springframework.stereotype.Repository;
 import ru.job4j.accidents.model.Accident;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
@@ -11,7 +13,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Repository
 public class MemAccidentRepository implements AccidentRepository {
     private Map<Integer, Accident> map = new ConcurrentHashMap<>();
-    private AtomicInteger integer = new AtomicInteger(0);
+    private AtomicInteger integer = new AtomicInteger(1);
 
     public MemAccidentRepository() {
         for (int i = 0; i < 11; i++) {
@@ -30,8 +32,8 @@ public class MemAccidentRepository implements AccidentRepository {
     }
 
     @Override
-    public Map<Integer, Accident> getMap() {
-        return new ConcurrentHashMap<>(map);
+    public List<Accident> getAll() {
+        return new ArrayList<>(map.values());
     }
 
     @Override

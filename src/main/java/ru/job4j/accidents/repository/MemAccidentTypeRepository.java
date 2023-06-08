@@ -3,15 +3,14 @@ package ru.job4j.accidents.repository;
 import org.springframework.stereotype.Repository;
 import ru.job4j.accidents.model.AccidentType;
 
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class MemAccidentTypeRepository implements AccidentTypeRepository {
     private Map<Integer, AccidentType> map = new ConcurrentHashMap<>();
-    private AtomicInteger integer = new AtomicInteger(0);
+    private AtomicInteger integer = new AtomicInteger(1);
 
     public MemAccidentTypeRepository() {
         map.put(integer.get(), new AccidentType(integer.get(), "Две машины"));
@@ -25,7 +24,7 @@ public class MemAccidentTypeRepository implements AccidentTypeRepository {
     }
 
     @Override
-    public Map<Integer, AccidentType> getMap() {
-        return new ConcurrentHashMap<>(map);
+    public List<AccidentType> getAll() {
+        return new ArrayList<>(map.values());
     }
 }

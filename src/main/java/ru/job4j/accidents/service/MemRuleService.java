@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import ru.job4j.accidents.model.Rule;
 import ru.job4j.accidents.repository.RuleRepository;
 
-import java.util.Map;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,7 +21,7 @@ public class MemRuleService implements RuleService {
     }
 
     @Override
-    public Map<Integer, Rule> getMap() {
-        return repository.getMap();
+    public List<Rule> getAll() {
+        return repository.getAll();
     }
 }
