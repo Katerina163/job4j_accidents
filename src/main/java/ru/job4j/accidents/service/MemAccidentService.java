@@ -21,8 +21,8 @@ public class MemAccidentService implements AccidentService {
     }
 
     @Override
-    public Optional<Accident> getAccient(int id) {
-        return repository.getAccient(id);
+    public Optional<Accident> getAccident(int id) {
+        return repository.getAccident(id);
     }
 
     @Override
