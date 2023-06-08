@@ -27,7 +27,6 @@ public class AccidentMem implements AccidentRepository {
 
     @Override
     public Optional<Accident> getAccient(int id) {
-
         return Optional.ofNullable(map.get(id));
     }
 

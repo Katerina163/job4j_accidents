@@ -10,9 +10,11 @@ import java.util.Optional;
 @Service
 public class MemAccidentService implements AccidentService {
     private AccidentRepository repository;
+    private AccidentTypeService accidentTypeService;
 
-    public MemAccidentService(AccidentRepository accidentMem) {
+    public MemAccidentService(AccidentRepository accidentMem, AccidentTypeService memAccidentTypeService) {
         repository = accidentMem;
+        accidentTypeService = memAccidentTypeService;
     }
 
     @Override
@@ -22,7 +24,13 @@ public class MemAccidentService implements AccidentService {
 
     @Override
     public Map<Integer, Accident> getMap() {
-        return repository.getMap();
+        var map = repository.getMap();
+        for (var accident : map.values()) {
+            if (accident.getType() == null) {
+                accident.setType(accidentTypeService.getAccidentType(1).get());
+            }
+        }
+        return map;
     }
 
     @Override
