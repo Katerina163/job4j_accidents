@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface AccidentRepository {
-    Optional<Accident> getAccient(int id);
+    Optional<Accident> getAccident(int id);
 
     List<Accident> getAll();
 
