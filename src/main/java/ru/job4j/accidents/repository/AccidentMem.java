@@ -27,7 +27,8 @@ public class AccidentMem implements AccidentRepository {
 
     @Override
     public Optional<Accident> getAccient(int id) {
-        return Optional.of(map.get(id));
+
+        return Optional.ofNullable(map.get(id));
     }
 
     @Override
@@ -36,17 +37,18 @@ public class AccidentMem implements AccidentRepository {
     }
 
     @Override
-    public void create(Accident accident) {
-        map.put(accident.getId(), accident);
+    public Accident create(Accident accident) {
+        accident.setId(integer.getAndIncrement());
+        return map.put(accident.getId(), accident);
     }
 
     @Override
-    public void delete(int id) {
-        map.remove(id);
+    public boolean delete(int id) {
+        return map.remove(id) != null;
     }
 
     @Override
-    public void modify(Accident accident) {
-        map.replace(accident.getId(), accident);
+    public boolean modify(Accident accident) {
+        return map.replace(accident.getId(), accident) != null;
     }
 }

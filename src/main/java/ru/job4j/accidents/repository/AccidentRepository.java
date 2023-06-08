@@ -10,9 +10,9 @@ public interface AccidentRepository {
 
     Map<Integer, Accident> getMap();
 
-    void create(Accident accident);
+    Accident create(Accident accident);
 
-    void delete(int id);
+    boolean delete(int id);
 
-    void modify(Accident accident);
+    boolean modify(Accident accident);
 }

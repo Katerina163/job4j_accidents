@@ -55,8 +55,12 @@ public class IndexController {
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable int id) {
-        service.delete(id);
+    public String delete(@PathVariable int id, Model model) {
+        var isDelete = service.delete(id);
+        if (!isDelete) {
+            model.addAttribute("message", "Не удалось удалить");
+            return "error";
+        }
         return "redirect:/";
     }
 
@@ -77,18 +81,27 @@ public class IndexController {
 
     @GetMapping("/modify/{id}")
     public String getModifyPage(@PathVariable int id, Model model) {
-        model.addAttribute("accident", service.getAccient(id).get())
+        var optional = service.getAccient(id);
+        if (optional.isEmpty()) {
+            model.addAttribute("message", "Не удалось найти");
+            return "error";
+        }
+        model.addAttribute("accident", optional.get())
                 .addAttribute("types", typeList)
                 .addAttribute("rules", rules);
         return "modify";
     }
 
     @PostMapping("/modify")
-    public String modify(@ModelAttribute Accident accident, HttpServletRequest req) {
+    public String modify(@ModelAttribute Accident accident, HttpServletRequest req, Model model) {
         setRules(accident, req.getParameterValues("rIds"));
         int id = accident.getType().getId();
         accident.setType(typeList.get(id - 1));
-        service.modify(accident);
+        var isModify = service.modify(accident);
+        if (!isModify) {
+            model.addAttribute("message", "Не удалось изменить");
+            return "error";
+        }
         return "redirect:/index";
     }
 }

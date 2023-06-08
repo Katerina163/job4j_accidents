@@ -26,17 +26,17 @@ public class MemAccidentService implements AccidentService {
     }
 
     @Override
-    public void create(Accident accident) {
-        repository.create(accident);
+    public Accident create(Accident accident) {
+        return repository.create(accident);
     }
 
     @Override
-    public void delete(int id) {
-        repository.delete(id);
+    public boolean delete(int id) {
+        return repository.delete(id);
     }
 
     @Override
-    public void modify(Accident accident) {
-        repository.modify(accident);
+    public boolean modify(Accident accident) {
+        return repository.modify(accident);
     }
 }
