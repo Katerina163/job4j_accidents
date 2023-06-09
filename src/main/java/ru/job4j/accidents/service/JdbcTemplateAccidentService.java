@@ -3,6 +3,7 @@ package ru.job4j.accidents.service;
 import org.springframework.stereotype.Service;
 import ru.job4j.accidents.model.Accident;
 import ru.job4j.accidents.repository.AccidentRepository;
+import ru.job4j.accidents.repository.RuleRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,9 +11,12 @@ import java.util.Optional;
 @Service
 public class JdbcTemplateAccidentService implements AccidentService {
     private AccidentRepository repository;
+    private RuleRepository ruleRepository;
 
-    public JdbcTemplateAccidentService(AccidentRepository jdbcTemplateAccidentRepository) {
+    public JdbcTemplateAccidentService(AccidentRepository jdbcTemplateAccidentRepository,
+                                       RuleRepository jdbcTemplateRuleRepository) {
         repository = jdbcTemplateAccidentRepository;
+        ruleRepository = jdbcTemplateRuleRepository;
     }
 
     @Override
@@ -27,7 +31,9 @@ public class JdbcTemplateAccidentService implements AccidentService {
 
     @Override
     public Accident create(Accident accident, String[] ids) {
-        return null;
+        repository.create(accident);
+        ruleRepository.setRules(accident, ids);
+        return accident;
     }
 
     @Override
@@ -37,6 +43,8 @@ public class JdbcTemplateAccidentService implements AccidentService {
 
     @Override
     public boolean modify(Accident accident, String[] ids) {
-        return false;
+        var accid = repository.modify(accident);
+        var rule = ruleRepository.setRules(accident, ids);
+        return accid && rule;
     }
 }
