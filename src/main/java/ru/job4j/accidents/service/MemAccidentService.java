@@ -41,9 +41,7 @@ public class MemAccidentService implements AccidentService {
     private void setTypeAndRules(Accident accident, String[] ids) {
         int id = accident.getType().getId();
         accident.setType(accidentTypeRepository.findById(id).get());
-        for (var s : ids) {
-            accident.getRules().add(ruleRepository.findById(Integer.parseInt(s)).get());
-        }
+        ruleRepository.setRules(accident, ids);
     }
 
     @Override
