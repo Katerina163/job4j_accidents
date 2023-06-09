@@ -17,7 +17,7 @@ public class IndexController {
 
     private RuleService ruleService;
 
-    public IndexController(AccidentService jdbcTemplateAccidentService, AccidentTypeService jdbcTemplateAccidentTypeService,
+     public IndexController(AccidentService jdbcTemplateAccidentService, AccidentTypeService jdbcTemplateAccidentTypeService,
                            RuleService jdbcTemplateRuleService) {
         service = jdbcTemplateAccidentService;
         typeService = jdbcTemplateAccidentTypeService;
@@ -55,7 +55,7 @@ public class IndexController {
 
     @GetMapping("/modify/{id}")
     public String getModifyPage(@PathVariable int id, Model model) {
-        var optional = service.getAccident(id);
+        var optional = service.findById(id);
         if (optional.isEmpty()) {
             model.addAttribute("message", "Не удалось найти");
             return "error";
