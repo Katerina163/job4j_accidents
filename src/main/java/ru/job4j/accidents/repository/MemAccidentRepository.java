@@ -2,6 +2,8 @@ package ru.job4j.accidents.repository;
 
 import org.springframework.stereotype.Repository;
 import ru.job4j.accidents.model.Accident;
+import ru.job4j.accidents.model.AccidentType;
+import ru.job4j.accidents.model.Rule;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +24,8 @@ public class MemAccidentRepository implements AccidentRepository {
             accident.setName("Имя под номером " + i);
             accident.setAddress("Ул. Летняя, дом №" + i);
             accident.setText("Случилось непонятное в количестве " + i + 1);
+            accident.setType(new AccidentType(1, "Две машины"));
+            accident.getRules().add(new Rule(1, "Статья. 1"));
             map.put(integer.getAndIncrement(), accident);
         }
     }
