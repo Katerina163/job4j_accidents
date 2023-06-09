@@ -8,5 +8,5 @@ import java.util.Optional;
 public interface AccidentTypeRepository {
     Optional<AccidentType> getAccidentType(int id);
 
-    List<AccidentType> getAll();
+    List<AccidentType> findAll();
 }

@@ -27,7 +27,7 @@ public class MemRuleRepository implements RuleRepository {
     }
 
     @Override
-    public List<Rule> getAll() {
+    public List<Rule> findAll() {
         return new ArrayList<>(map.values());
     }
 }

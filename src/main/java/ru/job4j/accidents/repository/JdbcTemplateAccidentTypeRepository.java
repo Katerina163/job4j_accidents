@@ -29,7 +29,7 @@ public class JdbcTemplateAccidentTypeRepository implements AccidentTypeRepositor
     }
 
     @Override
-    public List<AccidentType> getAll() {
+    public List<AccidentType> findAll() {
         return jdbc.query(
                 "select * from types",
                 actorRowMapper);

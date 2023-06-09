@@ -8,5 +8,5 @@ import java.util.Optional;
 public interface RuleRepository {
     Optional<Rule> getRule(int id);
 
-    List<Rule> getAll();
+    List<Rule> findAll();
 }

@@ -26,8 +26,8 @@ public class MemAccidentService implements AccidentService {
     }
 
     @Override
-    public List<Accident> getAll() {
-        var list = repository.getAll();
+    public List<Accident> findAll() {
+        var list = repository.findAll();
         for (var accident : list) {
             if (accident.getType() == null) {
                 accident.setType(accidentTypeService.getAccidentType(1).get());

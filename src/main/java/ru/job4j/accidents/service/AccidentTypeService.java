@@ -8,5 +8,5 @@ import java.util.Optional;
 public interface AccidentTypeService {
     Optional<AccidentType> getAccidentType(int id);
 
-    List<AccidentType> getAll();
+    List<AccidentType> findAll();
 }

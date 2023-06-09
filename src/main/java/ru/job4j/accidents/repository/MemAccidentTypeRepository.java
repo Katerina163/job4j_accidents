@@ -24,7 +24,7 @@ public class MemAccidentTypeRepository implements AccidentTypeRepository {
     }
 
     @Override
-    public List<AccidentType> getAll() {
+    public List<AccidentType> findAll() {
         return new ArrayList<>(map.values());
     }
 }

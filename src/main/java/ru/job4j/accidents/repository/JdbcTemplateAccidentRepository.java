@@ -54,7 +54,7 @@ public class JdbcTemplateAccidentRepository implements AccidentRepository {
     }
 
     @Override
-    public List<Accident> getAll() {
+    public List<Accident> findAll() {
         var result = jdbc.query(
                 "select a.id, a.name, text, address, t.id, t.name from accidents as a left join types t on a.type_id = t.id",
                 actorRowMapperAccident);

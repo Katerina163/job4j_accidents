@@ -26,14 +26,14 @@ public class IndexController {
 
     @GetMapping({"/", "/index"})
     public String getIndexPage(Model model) {
-        model.addAttribute("accidents", service.getAll());
+        model.addAttribute("accidents", service.findAll());
         return "index";
     }
 
     @GetMapping("/save")
     public String getCreatePage(Model model) {
-        model.addAttribute("types", typeService.getAll())
-                .addAttribute("rules", ruleService.getAll());
+        model.addAttribute("types", typeService.findAll())
+                .addAttribute("rules", ruleService.findAll());
         return "create";
     }
 
@@ -61,8 +61,8 @@ public class IndexController {
             return "error";
         }
         model.addAttribute("accident", optional.get())
-                .addAttribute("types", typeService.getAll())
-                .addAttribute("rules", ruleService.getAll());
+                .addAttribute("types", typeService.findAll())
+                .addAttribute("rules", ruleService.findAll());
         return "modify";
     }
 

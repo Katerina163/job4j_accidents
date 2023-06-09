@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface AccidentService {
     Optional<Accident> getAccident(int id);
 
-    List<Accident> getAll();
+    List<Accident> findAll();
 
     Accident create(Accident accident, String[] ids);
 

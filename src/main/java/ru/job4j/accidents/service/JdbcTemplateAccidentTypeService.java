@@ -21,7 +21,7 @@ public class JdbcTemplateAccidentTypeService implements AccidentTypeService {
     }
 
     @Override
-    public List<AccidentType> getAll() {
-        return repository.getAll();
+    public List<AccidentType> findAll() {
+        return repository.findAll();
     }
 }

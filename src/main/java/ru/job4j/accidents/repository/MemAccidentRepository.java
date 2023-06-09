@@ -32,7 +32,7 @@ public class MemAccidentRepository implements AccidentRepository {
     }
 
     @Override
-    public List<Accident> getAll() {
+    public List<Accident> findAll() {
         return new ArrayList<>(map.values());
     }
 

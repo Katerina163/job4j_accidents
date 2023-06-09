@@ -21,7 +21,7 @@ public class MemRuleService implements RuleService {
     }
 
     @Override
-    public List<Rule> getAll() {
-        return repository.getAll();
+    public List<Rule> findAll() {
+        return repository.findAll();
     }
 }

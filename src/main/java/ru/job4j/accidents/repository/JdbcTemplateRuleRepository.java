@@ -29,7 +29,7 @@ public class JdbcTemplateRuleRepository implements RuleRepository {
     }
 
     @Override
-    public List<Rule> getAll() {
+    public List<Rule> findAll() {
         return jdbc.query(
                 "select * from rules",
                 actorRowMapper);
