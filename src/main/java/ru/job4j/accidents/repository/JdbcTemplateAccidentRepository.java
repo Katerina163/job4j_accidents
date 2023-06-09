@@ -91,7 +91,7 @@ public class JdbcTemplateAccidentRepository implements AccidentRepository {
         var accident = jdbc.update(
                 "delete from accidents where id = ?",
                 (long) id);
-        return accident == 1 && rules == 1;
+        return accident == 1 && rules >= 1;
     }
 
     @Override

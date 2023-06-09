@@ -6,6 +6,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
+
 import javax.sql.DataSource;
 
 @Configuration
@@ -27,5 +30,10 @@ public class JdbcConfig {
     @Bean
     public JdbcTemplate jdbc(DataSource ds) {
         return new JdbcTemplate(ds);
+    }
+
+    @Bean
+    public PlatformTransactionManager txManager(DataSource ds) {
+        return new DataSourceTransactionManager(ds);
     }
 }

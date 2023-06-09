@@ -5,6 +5,7 @@ import ru.job4j.accidents.model.Accident;
 import ru.job4j.accidents.repository.AccidentRepository;
 import ru.job4j.accidents.repository.RuleRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,16 +20,19 @@ public class JdbcTemplateAccidentService implements AccidentService {
         ruleRepository = jdbcTemplateRuleRepository;
     }
 
+    @Transactional
     @Override
     public Optional<Accident> findById(int id) {
         return repository.findById(id);
     }
 
+    @Transactional
     @Override
     public List<Accident> findAll() {
         return repository.findAll();
     }
 
+    @Transactional
     @Override
     public Accident create(Accident accident, String[] ids) {
         repository.create(accident);
@@ -36,11 +40,13 @@ public class JdbcTemplateAccidentService implements AccidentService {
         return accident;
     }
 
+    @Transactional
     @Override
     public boolean delete(int id) {
         return repository.delete(id);
     }
 
+    @Transactional
     @Override
     public boolean modify(Accident accident, String[] ids) {
         var accid = repository.modify(accident);

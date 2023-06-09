@@ -53,6 +53,6 @@ public class JdbcTemplateRuleRepository implements RuleRepository {
                     actorRowMapper, Long.parseLong(id));
             accident.getRules().add(ruleById);
         }
-        return rules == 1 && ruleInsert >= 1 && ruleById != null;
+        return rules >= 1 && ruleInsert >= 1 && ruleById != null;
     }
 }
