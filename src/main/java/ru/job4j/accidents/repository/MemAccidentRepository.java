@@ -31,7 +31,7 @@ public class MemAccidentRepository implements AccidentRepository {
     }
 
     @Override
-    public Optional<Accident> getAccident(int id) {
+    public Optional<Accident> findById(int id) {
         return Optional.ofNullable(map.get(id));
     }
 

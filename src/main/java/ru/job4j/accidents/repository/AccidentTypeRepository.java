@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface AccidentTypeRepository {
-    Optional<AccidentType> getAccidentType(int id);
+    Optional<AccidentType> findById(int id);
 
     List<AccidentType> findAll();
 }

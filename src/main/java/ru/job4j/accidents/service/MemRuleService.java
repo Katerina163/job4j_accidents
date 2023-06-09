@@ -16,8 +16,8 @@ public class MemRuleService implements RuleService {
     }
 
     @Override
-    public Optional<Rule> getRule(int id) {
-        return repository.getRule(id);
+    public Optional<Rule> findById(int id) {
+        return repository.findById(id);
     }
 
     @Override

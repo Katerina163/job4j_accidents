@@ -16,8 +16,8 @@ public class MemAccidentTypeService implements AccidentTypeService {
     }
 
     @Override
-    public Optional<AccidentType> getAccidentType(int id) {
-        return repository.getAccidentType(id);
+    public Optional<AccidentType> findById(int id) {
+        return repository.findById(id);
     }
 
     @Override

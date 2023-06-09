@@ -22,7 +22,7 @@ public class MemRuleRepository implements RuleRepository {
     }
 
     @Override
-    public Optional<Rule> getRule(int id) {
+    public Optional<Rule> findById(int id) {
         return Optional.ofNullable(map.get(id));
     }
 

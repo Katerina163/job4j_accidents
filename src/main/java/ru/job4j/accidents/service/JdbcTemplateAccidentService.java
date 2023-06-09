@@ -16,8 +16,8 @@ public class JdbcTemplateAccidentService implements AccidentService {
     }
 
     @Override
-    public Optional<Accident> getAccident(int id) {
-        return repository.getAccident(id);
+    public Optional<Accident> findById(int id) {
+        return repository.findById(id);
     }
 
     @Override

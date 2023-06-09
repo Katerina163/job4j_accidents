@@ -33,7 +33,7 @@ public class JdbcTemplateAccidentRepository implements AccidentRepository {
     };
 
     @Override
-    public Optional<Accident> getAccident(int id) {
+    public Optional<Accident> findById(int id) {
         String sql = "select a.id, a.name, text, address, t.id, t.name from accidents as a"
                 + " left join types t on a.type_id = t.id where a.id = ?";
         var accident = jdbc.queryForObject(sql, actorRowMapperAccident, (long) id);
@@ -79,7 +79,7 @@ public class JdbcTemplateAccidentRepository implements AccidentRepository {
                     "insert into accidents_rules(accident_id, rule_id) values (?, ?)",
                     id, rule.getId());
         }
-        return getAccident(id).get();
+        return findById(id).get();
     }
 
     @Override

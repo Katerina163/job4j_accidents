@@ -21,7 +21,7 @@ public class JdbcTemplateRuleRepository implements RuleRepository {
     };
 
     @Override
-    public Optional<Rule> getRule(int id) {
+    public Optional<Rule> findById(int id) {
         return Optional.ofNullable(
                 jdbc.queryForObject(
                         "select * from rules where id = ?",
