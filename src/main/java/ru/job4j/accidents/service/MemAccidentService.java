@@ -3,6 +3,8 @@ package ru.job4j.accidents.service;
 import org.springframework.stereotype.Service;
 import ru.job4j.accidents.model.Accident;
 import ru.job4j.accidents.repository.AccidentRepository;
+import ru.job4j.accidents.repository.AccidentTypeRepository;
+import ru.job4j.accidents.repository.RuleRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,14 +12,14 @@ import java.util.Optional;
 @Service
 public class MemAccidentService implements AccidentService {
     private AccidentRepository repository;
-    private AccidentTypeService accidentTypeService;
-    private RuleService ruleService;
+    private AccidentTypeRepository accidentTypeRepository;
+    private RuleRepository ruleRepository;
 
-    public MemAccidentService(AccidentRepository memAccidentRepository, AccidentTypeService memAccidentTypeService,
-                              RuleService memRuleService) {
+    public MemAccidentService(AccidentRepository memAccidentRepository, AccidentTypeRepository memAccidentTypeRepository,
+                              RuleRepository memRuleRepository) {
         repository = memAccidentRepository;
-        accidentTypeService = memAccidentTypeService;
-        ruleService = memRuleService;
+        accidentTypeRepository = memAccidentTypeRepository;
+        ruleRepository = memRuleRepository;
     }
 
     @Override
@@ -38,9 +40,9 @@ public class MemAccidentService implements AccidentService {
 
     private void setTypeAndRules(Accident accident, String[] ids) {
         int id = accident.getType().getId();
-        accident.setType(accidentTypeService.getAccidentType(id).get());
+        accident.setType(accidentTypeRepository.getAccidentType(id).get());
         for (var s : ids) {
-            accident.getRules().add(ruleService.getRule(Integer.parseInt(s)).get());
+            accident.getRules().add(ruleRepository.getRule(Integer.parseInt(s)).get());
         }
     }
 
