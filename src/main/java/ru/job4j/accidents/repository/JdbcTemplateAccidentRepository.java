@@ -67,6 +67,9 @@ public class JdbcTemplateAccidentRepository implements AccidentRepository {
     @Override
     public Accident create(Accident accident) {
         jdbc.update(
+            "delete from accidents_rules where accident_id = ?",
+            (long) accident.getId());
+        jdbc.update(
                 "insert into accidents(name, text, address, type_id) values (?, ?, ?, ?)",
                 accident.getName(), accident.getText(), accident.getAddress(), accident.getType().getId());
         var id = jdbc.queryForObject("select id from accidents where name = ? and text = ? and address = ?",
@@ -96,8 +99,16 @@ public class JdbcTemplateAccidentRepository implements AccidentRepository {
 
     @Override
     public boolean modify(Accident accident) {
+        jdbc.update(
+                "delete from accidents_rules where accident_id = ?",
+                (long) accident.getId());
         var accidentCount = jdbc.update("update accidents set name = ?, text = ?, address = ?, type_id = ? where id = ?",
                 accident.getName(), accident.getText(), accident.getAddress(), accident.getType().getId(), accident.getId());
+        for (var rule : accident.getRules()) {
+            jdbc.update(
+                    "insert into accidents_rules(accident_id, rule_id) values (?, ?)",
+                    accident.getId(), rule.getId());
+        }
         return accidentCount == 1;
     }
 }

@@ -35,9 +35,8 @@ public class JdbcTemplateAccidentService implements AccidentService {
     @Transactional
     @Override
     public Accident create(Accident accident, String[] ids) {
-        repository.create(accident);
-        ruleRepository.setRules(accident, ids);
-        return accident;
+        accident.setRules(ruleRepository.getRules(ids));
+        return repository.create(accident);
     }
 
     @Transactional
@@ -49,8 +48,7 @@ public class JdbcTemplateAccidentService implements AccidentService {
     @Transactional
     @Override
     public boolean modify(Accident accident, String[] ids) {
-        var accid = repository.modify(accident);
-        var rule = ruleRepository.setRules(accident, ids);
-        return accid && rule;
+        accident.setRules(ruleRepository.getRules(ids));
+        return repository.modify(accident);
     }
 }

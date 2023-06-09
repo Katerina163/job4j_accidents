@@ -1,13 +1,9 @@
 package ru.job4j.accidents.repository;
 
 import org.springframework.stereotype.Repository;
-import ru.job4j.accidents.model.Accident;
 import ru.job4j.accidents.model.Rule;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -28,11 +24,12 @@ public class MemRuleRepository implements RuleRepository {
     }
 
     @Override
-    public boolean setRules(Accident accident, String[] ids) {
+    public Set<Rule> getRules(String[] ids) {
+        var result = new HashSet<Rule>();
         for (var id : ids) {
-            accident.getRules().add(map.get(Integer.parseInt(id)));
+            result.add(map.get(Integer.parseInt(id)));
         }
-        return !accident.getRules().isEmpty();
+        return result;
     }
 
     @Override

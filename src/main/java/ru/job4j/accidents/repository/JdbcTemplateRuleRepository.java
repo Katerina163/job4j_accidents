@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-import ru.job4j.accidents.model.Accident;
 import ru.job4j.accidents.model.Rule;
 
 import java.util.*;
@@ -36,23 +35,13 @@ public class JdbcTemplateRuleRepository implements RuleRepository {
     }
 
     @Override
-    public boolean setRules(Accident accident, String[] ids) {
-        var rules = jdbc.update(
-                "delete from accidents_rules where accident_id = ?",
-                (long) accident.getId());
-        int ruleInsert = 0;
-        for (var rule : ids) {
-            ruleInsert += jdbc.update(
-                    "insert into accidents_rules(accident_id, rule_id) values (?, ?)",
-                    accident.getId(), Long.parseLong(rule));
-        }
-        Rule ruleById = null;
+    public Set<Rule> getRules(String[] ids) {
+        var result = new HashSet<Rule>();
         for (var id : ids) {
-            ruleById = jdbc.queryForObject(
+            result.add(jdbc.queryForObject(
                     "select * from rules where id = ?",
-                    actorRowMapper, Long.parseLong(id));
-            accident.getRules().add(ruleById);
+                    actorRowMapper, Long.parseLong(id)));
         }
-        return rules >= 1 && ruleInsert >= 1 && ruleById != null;
+        return result;
     }
 }
