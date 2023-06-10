@@ -17,11 +17,11 @@ public class IndexController {
 
     private RuleService ruleService;
 
-     public IndexController(AccidentService jdbcTemplateAccidentService, AccidentTypeService jdbcTemplateAccidentTypeService,
-                           RuleService jdbcTemplateRuleService) {
-        service = jdbcTemplateAccidentService;
-        typeService = jdbcTemplateAccidentTypeService;
-        ruleService = jdbcTemplateRuleService;
+    public IndexController(AccidentService hiberAccidentService, AccidentTypeService hiberAccidentTypeService,
+                           RuleService hiberRuleService) {
+        service = hiberAccidentService;
+        typeService = hiberAccidentTypeService;
+        ruleService = hiberRuleService;
     }
 
     @GetMapping({"/", "/index"})

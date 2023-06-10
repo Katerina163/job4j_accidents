@@ -9,6 +9,7 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import ru.job4j.accidents.repository.CrudRepository;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -33,5 +34,10 @@ public class HibernateConfig {
         HibernateTransactionManager tx = new HibernateTransactionManager();
         tx.setSessionFactory(sf);
         return tx;
+    }
+
+    @Bean
+    public CrudRepository crud(SessionFactory sf) {
+        return new CrudRepository(sf);
     }
 }
