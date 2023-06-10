@@ -47,12 +47,12 @@ public class MemAccidentRepository implements AccidentRepository {
     }
 
     @Override
-    public boolean delete(int id) {
-        return map.remove(id) != null;
+    public void delete(int id) {
+        map.remove(id);
     }
 
     @Override
-    public boolean modify(Accident accident) {
-        return map.replace(accident.getId(), accident) != null;
+    public void modify(Accident accident) {
+        map.replace(accident.getId(), accident);
     }
 }

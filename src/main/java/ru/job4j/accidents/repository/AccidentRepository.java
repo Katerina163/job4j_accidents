@@ -12,7 +12,7 @@ public interface AccidentRepository {
 
     Accident create(Accident accident);
 
-    boolean delete(int id);
+    void delete(int id);
 
-    boolean modify(Accident accident);
+    void modify(Accident accident);
 }

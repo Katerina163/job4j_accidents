@@ -38,12 +38,8 @@ public class IndexController {
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable int id, Model model) {
-        var isDelete = service.delete(id);
-        if (!isDelete) {
-            model.addAttribute("message", "Не удалось удалить");
-            return "error";
-        }
+    public String delete(@PathVariable int id) {
+        service.delete(id);
         return "redirect:/";
     }
 
@@ -67,12 +63,8 @@ public class IndexController {
     }
 
     @PostMapping("/modify")
-    public String modify(@ModelAttribute Accident accident, HttpServletRequest req, Model model) {
-        var isModify = service.modify(accident, req.getParameterValues("rIds"));
-        if (!isModify) {
-            model.addAttribute("message", "Не удалось изменить");
-            return "error";
-        }
+    public String modify(@ModelAttribute Accident accident, HttpServletRequest req) {
+        service.modify(accident, req.getParameterValues("rIds"));
         return "redirect:/index";
     }
 }

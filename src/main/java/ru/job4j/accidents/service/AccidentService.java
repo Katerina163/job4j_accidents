@@ -12,7 +12,7 @@ public interface AccidentService {
 
     Accident create(Accident accident, String[] ids);
 
-    boolean delete(int id);
+    void delete(int id);
 
-    boolean modify(Accident accident, String[] ids);
+    void modify(Accident accident, String[] ids);
 }

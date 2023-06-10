@@ -38,13 +38,13 @@ public class JdbcTemplateAccidentService implements AccidentService {
     }
 
     @Override
-    public boolean delete(int id) {
-        return repository.delete(id);
+    public void delete(int id) {
+        repository.delete(id);
     }
 
     @Override
-    public boolean modify(Accident accident, String[] ids) {
+    public void modify(Accident accident, String[] ids) {
         accident.setRules(ruleRepository.getRules(ids));
-        return repository.modify(accident);
+        repository.modify(accident);
     }
 }
