@@ -36,12 +36,11 @@ public class JdbcTemplateRuleRepository implements RuleRepository {
 
     @Override
     public Set<Rule> getRules(String[] ids) {
-        var result = new HashSet<Rule>();
-        for (var id : ids) {
-            result.add(jdbc.queryForObject(
-                    "select * from rules where id = ?",
-                    actorRowMapper, Long.parseLong(id)));
-        }
-        return result;
+        String inSql = String.join(", ", Collections.nCopies(ids.length, "?"));
+        Integer[] arr = Arrays.stream(ids).map(Integer::parseInt).toArray(Integer[]::new);
+        List<Rule> list = jdbc.query(
+                String.format("select * from rules where id in (%s)", inSql),
+                actorRowMapper, arr);
+        return new HashSet<>(list);
     }
 }

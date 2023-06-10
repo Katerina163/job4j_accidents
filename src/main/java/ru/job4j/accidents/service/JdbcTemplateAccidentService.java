@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 @Service
 public class JdbcTemplateAccidentService implements AccidentService {
     private AccidentRepository repository;
@@ -20,32 +21,27 @@ public class JdbcTemplateAccidentService implements AccidentService {
         ruleRepository = jdbcTemplateRuleRepository;
     }
 
-    @Transactional
     @Override
     public Optional<Accident> findById(int id) {
         return repository.findById(id);
     }
 
-    @Transactional
     @Override
     public List<Accident> findAll() {
         return repository.findAll();
     }
 
-    @Transactional
     @Override
     public Accident create(Accident accident, String[] ids) {
         accident.setRules(ruleRepository.getRules(ids));
         return repository.create(accident);
     }
 
-    @Transactional
     @Override
     public boolean delete(int id) {
         return repository.delete(id);
     }
 
-    @Transactional
     @Override
     public boolean modify(Accident accident, String[] ids) {
         accident.setRules(ruleRepository.getRules(ids));
