@@ -32,8 +32,7 @@ public class Accident {
     @JoinColumn(name = "type_id", nullable = false)
     private AccidentType type;
 
-    @OneToMany(fetch = FetchType.EAGER,
-            cascade =
+    @ManyToMany(cascade =
                     {
                             CascadeType.DETACH,
                             CascadeType.MERGE,
