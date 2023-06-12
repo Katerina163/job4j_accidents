@@ -10,6 +10,10 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@NamedEntityGraph(
+        name = "accident-with-rules",
+        attributeNodes = @NamedAttributeNode("rules")
+)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -36,8 +40,7 @@ public class Accident {
                     {
                             CascadeType.DETACH,
                             CascadeType.MERGE,
-                            CascadeType.REFRESH,
-                            CascadeType.PERSIST
+                            CascadeType.REFRESH
                     },
             targetEntity = Rule.class)
     @JoinTable(name = "accidents_rules",

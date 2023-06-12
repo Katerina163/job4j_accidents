@@ -17,11 +17,11 @@ public class IndexController {
 
     private RuleService ruleService;
 
-    public IndexController(AccidentService hiberAccidentService, AccidentTypeService hiberAccidentTypeService,
-                           RuleService hiberRuleService) {
-        service = hiberAccidentService;
-        typeService = hiberAccidentTypeService;
-        ruleService = hiberRuleService;
+    public IndexController(AccidentService springAccidentService, AccidentTypeService springAccidentTypeService,
+                           RuleService springRuleService) {
+        service = springAccidentService;
+        typeService = springAccidentTypeService;
+        ruleService = springRuleService;
     }
 
     @GetMapping({"/", "/index"})
