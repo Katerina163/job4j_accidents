@@ -15,12 +15,14 @@ public class HiberAccidentRepository implements AccidentRepository {
 
     @Override
     public Optional<Accident> findById(int id) {
-        return Optional.of(crud.tx(session -> session.find(Accident.class, id)));
+        return crud.optional(
+                "from Accident a left join fetch a.rules where a.id = :id",
+                Accident.class, Map.of("id", id));
     }
 
     @Override
     public List<Accident> findAll() {
-        return crud.query("from Accident", Accident.class);
+        return crud.query("select distinct a from Accident a left join fetch a.rules", Accident.class);
     }
 
     @Override
