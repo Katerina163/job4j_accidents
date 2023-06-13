@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import ru.job4j.accidents.model.Rule;
 import ru.job4j.accidents.repository.SpringRuleRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,8 +20,6 @@ public class SpringRuleService implements RuleService {
 
     @Override
     public List<Rule> findAll() {
-        List<Rule> list = new ArrayList<>();
-        repository.findAll().forEach(list::add);
-        return list;
+        return repository.findAll();
     }
 }
