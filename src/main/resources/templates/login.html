@@ -16,7 +16,7 @@
         <div class="col-md-6 offset-md-3">
             <h2 class="text-center text-dark mt-5">Вход</h2>
             <div class="text-center mb-5 text-dark">в учетную запись</div>
-            <div class="card my-5">
+            <div class="card my-5 bg-warning">
                 <form class="card-body cardboard-color p-lg-5" th:action="@{/login}" method="post">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <div class="text-center">
