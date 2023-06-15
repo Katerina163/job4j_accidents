@@ -1,4 +1,3 @@
-alter table accidents add type_id int not null references types(id);
 insert into accidents (name, text, address, type_id)
 values ('Иван Иванов', 'что-то произошло непонятное', 'ул. Пупкина, дом 4', 1);
 insert into accidents (name, text, address, type_id)
