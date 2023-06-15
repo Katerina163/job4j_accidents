@@ -30,6 +30,14 @@
                         <a class="nav-link" aria-current="page" th:href="@{/save}">Добавить инцидент</a>
                     </li>
                 </ul>
+                <ul class="navbar-nav ms-auto d-none d-lg-inline-flex">
+                    <li class="nav-item mx-2">
+                        <a class="nav-link text-lidth h5" th:text="${user.username}" target="blank"></a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link text-lidth h5" th:href="@{/logout}" target="blank">Выход</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>

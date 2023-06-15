@@ -1,5 +1,6 @@
 package ru.job4j.accidents.controller;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -27,13 +28,17 @@ public class IndexController {
 
     @GetMapping({"/", "/index"})
     public String getIndexPage(Model model) {
-        model.addAttribute("accidents", service.findAll());
+        addUser(model).addAttribute("accidents", service.findAll());
         return "index";
+    }
+
+    public Model addUser(Model model) {
+        return model.addAttribute("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
     }
 
     @GetMapping("/save")
     public String getCreatePage(Model model) {
-        model.addAttribute("types", typeService.findAll())
+        addUser(model).addAttribute("types", typeService.findAll())
                 .addAttribute("rules", ruleService.findAll());
         return "create";
     }
@@ -57,7 +62,7 @@ public class IndexController {
             model.addAttribute("message", "Не удалось найти");
             return "error";
         }
-        model.addAttribute("accident", optional.get())
+        addUser(model).addAttribute("accident", optional.get())
                 .addAttribute("types", typeService.findAll())
                 .addAttribute("rules", ruleService.findAll());
         return "modify";
