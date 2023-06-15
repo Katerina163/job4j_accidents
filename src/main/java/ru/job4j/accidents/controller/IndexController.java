@@ -43,7 +43,7 @@ public class IndexController {
         return "create";
     }
 
-    @GetMapping("/delete/{id}")
+    @PostMapping("/delete/{id}")
     public String delete(@PathVariable int id) {
         service.delete(id);
         return "redirect:/";

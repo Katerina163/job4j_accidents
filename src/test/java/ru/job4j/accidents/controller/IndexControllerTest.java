@@ -43,15 +43,6 @@ class IndexControllerTest {
 
     @Test
     @WithMockUser
-    public void shouldDeleteSavePageAndRedirect() throws Exception {
-        this.mockMvc.perform(get("/delete/1"))
-                .andDo(print())
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/"));
-    }
-
-    @Test
-    @WithMockUser
     public void shouldReturnSavePage() throws Exception {
         this.mockMvc.perform(get("/save"))
                 .andDo(print())

@@ -78,7 +78,9 @@
                     <input type="text" class="form-control" name="address" id="address" th:field="*{address}" required>
                 </div>
                 <button type="submit" class="btn btn-danger mt-3">Изменить</button>
-                <a th:href="@{/delete/{id}(id=${accident.id})}" class="btn btn-danger mt-3">Удалить</a>
+            </form>
+            <form th:action="@{/delete/{id}(id=${accident.id})}" method="post" enctype="multipart/form-data">
+                <button  class="btn btn-danger mt-3">Удалить</button>
             </form>
         </div>
     </div>
