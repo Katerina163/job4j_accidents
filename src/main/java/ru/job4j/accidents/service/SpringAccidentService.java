@@ -16,7 +16,6 @@ public class SpringAccidentService implements AccidentService {
 
     @Override
     public Optional<Accident> findById(int id) {
-
         return repository.findById(id);
     }
 
