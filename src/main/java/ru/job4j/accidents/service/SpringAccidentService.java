@@ -3,8 +3,8 @@ package ru.job4j.accidents.service;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.job4j.accidents.model.Accident;
-import ru.job4j.accidents.model.Rule;
 import ru.job4j.accidents.repository.SpringAccidentRepository;
+import ru.job4j.accidents.repository.SpringRuleRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +13,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class SpringAccidentService implements AccidentService {
     private SpringAccidentRepository repository;
+    private SpringRuleRepository ruleRepository;
 
     @Override
     public Optional<Accident> findById(int id) {
@@ -32,8 +33,7 @@ public class SpringAccidentService implements AccidentService {
 
     private void setRules(Accident accident, String[] ids) {
         for (var s : ids) {
-            var rule = new Rule();
-            rule.setId(Integer.parseInt(s));
+            var rule = ruleRepository.findById(Integer.parseInt(s)).orElseThrow(IllegalArgumentException::new);
             accident.getRules().add(rule);
         }
     }
