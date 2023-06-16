@@ -11,10 +11,12 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.job4j.accidents.Main;
 
-@ContextConfiguration("/application-test.properties")
+@TestPropertySource("/application-test.properties")
+@ContextConfiguration
 @SpringBootTest(classes = Main.class)
 @AutoConfigureMockMvc
 class LoginControllerTest {
