@@ -18,7 +18,7 @@ import ru.job4j.accidents.Main;
 @ActiveProfiles("test")
 @SpringBootTest(classes = Main.class)
 @AutoConfigureMockMvc
-class RegControlTest {
+class RegControllerTest {
     @Autowired
     private MockMvc mockMvc;
 

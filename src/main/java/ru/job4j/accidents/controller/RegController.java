@@ -10,12 +10,12 @@ import ru.job4j.accidents.repository.AuthorityRepository;
 import ru.job4j.accidents.repository.UserRepository;
 
 @Controller
-public class RegControl {
+public class RegController {
     private final PasswordEncoder encoder;
     private final UserRepository users;
     private final AuthorityRepository authorities;
 
-    public RegControl(PasswordEncoder encoder, UserRepository users, AuthorityRepository authorities) {
+    public RegController(PasswordEncoder encoder, UserRepository users, AuthorityRepository authorities) {
         this.encoder = encoder;
         this.users = users;
         this.authorities = authorities;
