@@ -6,6 +6,7 @@ import ru.job4j.accidents.model.Accident;
 import ru.job4j.accidents.repository.SpringAccidentRepository;
 import ru.job4j.accidents.repository.SpringRuleRepository;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,15 +28,8 @@ public class SpringAccidentService implements AccidentService {
 
     @Override
     public Accident create(Accident accident, String[] ids) {
-        setRules(accident, ids);
+        accident.setRules(ruleRepository.findAllByIdIn(toList(ids)));
         return repository.save(accident);
-    }
-
-    private void setRules(Accident accident, String[] ids) {
-        for (var s : ids) {
-            var rule = ruleRepository.findById(Integer.parseInt(s)).orElseThrow(IllegalArgumentException::new);
-            accident.getRules().add(rule);
-        }
     }
 
     @Override
@@ -47,7 +41,11 @@ public class SpringAccidentService implements AccidentService {
 
     @Override
     public void modify(Accident accident, String[] ids) {
-        setRules(accident, ids);
+        accident.setRules(ruleRepository.findAllByIdIn(toList(ids)));
         repository.save(accident);
+    }
+
+    private List<Integer> toList(String[] ids) {
+        return Arrays.stream(ids).map(Integer::parseInt).toList();
     }
 }
