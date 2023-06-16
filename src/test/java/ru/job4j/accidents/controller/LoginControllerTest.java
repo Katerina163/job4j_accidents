@@ -3,6 +3,8 @@ package ru.job4j.accidents.controller;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
@@ -19,6 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
+@AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 @TestPropertySource("/application-test.properties")
 class LoginControllerTest {
     @Autowired
@@ -43,13 +46,14 @@ class LoginControllerTest {
 
     @Test
     public void badCredentials() throws Exception {
-        this.mockMvc.perform(post("/login").param("username", "jonh"))
+        this.mockMvc.perform(post("/login").param("username", "hello"))
                 .andDo(print())
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/login?error=true"));
     }
 
     @Test
+    @WithMockUser
     public void correctLoginTest() throws Exception {
         this.mockMvc.perform(formLogin().user("admin").password("admin"))
                 .andExpect(status().is3xxRedirection())
