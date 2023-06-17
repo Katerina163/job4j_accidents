@@ -9,6 +9,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -46,14 +47,14 @@ class LoginControllerTest {
 
     @Test
     public void badCredentials() throws Exception {
-        this.mockMvc.perform(post("/login").param("username", "hello"))
+        this.mockMvc.perform(post("/login").param("hello", "world!"))
                 .andDo(print())
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/login?error=true"));
     }
 
     @Test
-    @WithMockUser
+    @Sql("/user_for_test.sql")
     public void correctLoginTest() throws Exception {
         this.mockMvc.perform(formLogin().user("admin").password("admin"))
                 .andExpect(status().is3xxRedirection())
